@@ -1,34 +1,63 @@
-# ATOMS-Automated_Organ_Monitoring_System
+# ATOMS | Automated Organ Transport System
 
-ESP32-based prototype for monitoring temperature, acceleration-derived vibration, and RFID identification during simulated organ transport. A 16×2 LCD provides local readings. Optional server communication can provide transport state and a remaining-time countdown.
+ATOMS is an ESP32-based organ transport monitoring prototype developed to improve the safety and traceability of organs during transportation. It combines temperature monitoring, vibration detection, and RFID identification in a compact embedded system.
 
-## Hardware
+The project was developed as a Medical Electronics Engineering minor project at Ramaiah Institute of Technology (2025–26).
 
-| Part | Purpose | Connection |
-| --- | --- | --- |
-| ESP32 Dev Module | Controller | — |
-| DS18B20 | Temperature | GPIO4, 4.7 kΩ pull-up to 3.3 V |
-| MPU6050 | Acceleration | I2C SDA21 / SCL22 |
-| MFRC522 | RFID tag UID | SPI SS5 / RST15 / SCK18 / MISO19 / MOSI23 |
-| 16×2 I2C LCD | Local display | I2C SDA21 / SCL22, typically address 0x27 |
+## Features
 
-## Firmware setup
+- **Temperature Monitoring:** DS18B20 sensor measures transport temperature, with a target range of 4–8°C.
+- **Vibration Detection:** MPU6050 accelerometer monitors movement and mechanical shocks during transit.
+- **RFID Identification:** MFRC522 reader identifies tagged organ containers using unique RFID IDs.
+- **LCD Display:** 16×2 I2C LCD displays live sensor readings and transport status.
+- **Remote Monitoring:** The complete prototype also includes a mobile application for viewing sensor data, transport history, patient details and alerts.
 
-1. Install the ESP32 board package in Arduino IDE and select **ESP32 Dev Module**.
-2. Install **OneWire**, **DallasTemperature**, **Adafruit MPU6050** (and dependencies), **MFRC522**, **LiquidCrystal I2C**, and **ArduinoJson v6**.
-3. Copy `firmware/ATOMS_ESP32/config.example.h` to `firmware/ATOMS_ESP32/config.h`.
-4. Leave `ENABLE_BACKEND` as `0` for standalone operation. For optional backend integration, set it to `1` and configure Wi-Fi credentials and your own server endpoint in the private `config.h`.
-5. Open `firmware/ATOMS_ESP32/ATOMS_ESP32.ino`, compile, and upload.
+## Hardware Components
 
-## Operation
+| Component | Purpose |
+|---|---|
+| ESP32 | Main microcontroller |
+| DS18B20 | Temperature monitoring |
+| MPU6050 | Vibration and movement detection |
+| MFRC522 | RFID identification |
+| 16×2 I2C LCD | Local monitoring display |
+| Copper PCB | Hardware assembly and integration |
 
-- Reads temperature every five seconds.
-- Estimates vibration from acceleration magnitude deviation relative to 1g (not calibrated vibration measurement).
-- Reads an RFID tag UID and displays local sensor measurements.
-- With backend enabled, posts readings and receives transport state and remaining minutes. The LCD can continue the last received countdown between server updates.
-## Limitations
+## System Overview
 
-Educational hardware prototype only, not a validated organ preservation or clinical monitoring system. GPS coordinates and lock status in the optional payload are hardcoded placeholders; the firmware does not measure location or lock state as of now. RFID UID is a demo identifier, not a verified organ ID. 
-## Project media
+The ESP32 collects temperature readings through the 1-Wire interface, acceleration data through I2C, and RFID information through SPI.
+
+Vibration is estimated using the acceleration magnitude relative to gravitational acceleration
+
+The LCD provides local monitoring, while the complete system supports wireless communication with a monitoring application.
+
+## Technologies Used
+
+**Hardware:** ESP32, DS18B20, MPU6050, MFRC522, I2C LCD, PCB
+
+**Software:** Embedded C/C++, Arduino IDE, OneWire, DallasTemperature, Adafruit MPU6050, MFRC522
+
+**Protocols:** I2C, SPI, 1-Wire, Wi-Fi
+
+## Repository Scope
+
+This repository contains the ESP32 firmware for the hardware monitoring system. The mobile application and backend are not included.
+
+The current firmware uses RFID identification and sensor monitoring. GPS tracking and electronic locking are planned extensions rather than implemented hardware features.
+
+## Future Improvements
+
+- GPS-based transport tracking
+- Electronic locking and tamper detection
+- Active temperature regulation
+- Improved enclosure and power management
+
+## Project Media
+
+<img width="560" height="467" alt="WhatsApp Image 2026-10-20 at 15 14 27" src="https://github.com/user-attachments/assets/b22f32b0-691a-4ce7-8584-12c918242683" />
+<img width="580" height="386" alt="WhatsApp Image 2026-10-20 at 15 13 04" src="https://github.com/user-attachments/assets/2cd62475-131d-453b-88ec-96e1996dc4e1" />
 
 
+
+
+*Academic prototype intended for demonstration and development. Not validated for clinical organ transportation.*
