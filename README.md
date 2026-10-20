@@ -39,12 +39,6 @@ The LCD provides local monitoring, while the complete system supports wireless c
 
 **Protocols:** I2C, SPI, 1-Wire, Wi-Fi
 
-## Repository Scope
-
-This repository contains the ESP32 firmware for the hardware monitoring system. The mobile application and backend are not included.
-
-The current firmware uses RFID identification and sensor monitoring. GPS tracking and electronic locking are planned extensions rather than implemented hardware features.
-
 ## Future Improvements
 
 - GPS-based transport tracking
