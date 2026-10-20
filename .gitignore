@@ -1,4 +1,4 @@
-# Local credentials and server configuration
+# Local credentials and also server configuration
 config.h
 **/config.h
 .env
