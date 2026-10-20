@@ -1,5 +1,4 @@
 # ATOMS-Automated_Organ_Monitoring_System
-# ATOMS — Automated Organ Transport Monitoring System
 
 ESP32-based prototype for monitoring temperature, acceleration-derived vibration, and RFID identification during simulated organ transport. A 16×2 LCD provides local readings. Optional server communication can provide transport state and a remaining-time countdown.
 
