@@ -1,0 +1,22 @@
+# Local credentials and server configuration
+config.h
+**/config.h
+.env
+.env.*
+!.env.example
+
+# Local Arduino builds and editor files
+build/
+**/build/
+*.elf
+*.bin
+*.map
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Do not commit local datasets, logs, or private records
+*.log
+private/
+secrets/
